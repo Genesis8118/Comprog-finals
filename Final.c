@@ -37,6 +37,7 @@ void displayTopPaidEmployees(Employee *employees, int num_employees, int N);
 void clearInputBuffer();
 void importEmployeesFromFile(Employee *employees, int *num_employees);
 void correctDepartmentName(char *department);
+void displayUserManual();
 
 Department departments[NUM_DEPARTMENTS] = 
 {
@@ -75,6 +76,7 @@ int main()
         printf("9. Calculate Department-wise Salary\n");
         printf("10. Display Top N Paid Employees\n");
         printf("11. Exit\n");
+        printf("12. Display User Manual\n");
         printf("Enter your choice: ");
         if (scanf("%d", &choice) != 1) 
         {
@@ -129,6 +131,9 @@ int main()
             case 11:
                 printf("Exiting...\n");
                 break;
+            case 12:
+                displayUserManual();
+                break;
             default:
                 printf("Invalid choice. Please try again.\n");
         }
@@ -144,14 +149,16 @@ void clearInputBuffer()
     while (getchar() != '\n');
 }
 
-void addEmployee(Employee *employees, int *num_employees) {
+void addEmployee(Employee *employees, int *num_employees) 
+{
     int choice;
     printf("Employee Management System\n");
     printf("1. Add employee manually\n");
     printf("2. Import employees from file\n");
     printf("3. Back\n");
     printf("Enter your choice: ");
-    if (scanf("%d", &choice) != 1) {
+    if (scanf("%d", &choice) != 1) 
+    {
         printf("Invalid input. Please enter a number.\n");
         clearInputBuffer();
         return;
@@ -218,6 +225,14 @@ int isValidDepartment(const char *department)
         }
     }
     return 0; // Department name not found in the list of valid departments
+}
+
+void correctDepartmentName(char *department) 
+{
+    for (int i = 0; department[i]; i++) 
+    {
+        department[i] = toupper(department[i]);
+    }
 }
 
 void importEmployeesFromFile(Employee *employees, int *num_employees) 
@@ -508,10 +523,107 @@ void displayTopPaidEmployees(Employee *employees, int num_employees, int N)
     }
 }
 
-void correctDepartmentName(char *department) 
+// Function to display the user manual
+void displayUserManual() 
 {
-    for (int i = 0; department[i]; i++) 
-    {
-        department[i] = toupper(department[i]);
-    }
+    printf("\nEmployee Management System User Manual\n");
+    printf("Table of Contents\n");
+    printf("\t1. Introduction\n");
+    printf("\t2. System Requirements\n");
+    printf("\t3. Installation\n");
+    printf("\t4. Program Overview\n");
+    printf("\t5. Main Menu Options\n");
+    printf("\t\t5.1 Add Employee\n");
+    printf("\t\t5.2 Display Employees\n");
+    printf("\t\t5.3 Search Employee\n");
+    printf("\t\t5.4 Update Employee Record\n");
+    printf("\t\t5.5 Delete Employee Record\n");
+    printf("\t\t5.6 Save to File\n");
+    printf("\t\t5.7 Load from File\n");
+    printf("\t\t5.8 Sort Employees by ID\n");
+    printf("\t\t5.9 Calculate Department-wise Salary\n");
+    printf("\t\t5.10 Display Top N Paid Employees\n");
+    printf("\t\t5.11 Exit\n");
+    printf("\t6. Additional Features\n");
+    printf("\t7. Troubleshooting\n");
+
+    printf("\nIntroduction\n");
+    printf("The Employee Management System is designed to help you manage employee information efficiently.\n");
+    printf("This system allows you to add, display, search, update, delete, save, and load employee records.\n");
+
+    printf("\nSystem Requirements\n");
+    printf("Operating System: Any OS with support for C programming (e.g., Windows, Linux, macOS)\n");
+    printf("Compiler: GCC or any standard C compiler\n");
+    printf("Memory: At least 1 MB of free RAM\n");
+
+    printf("\nInstallation\n");
+    printf("1. Ensure you have a C compiler installed (e.g., GCC).\n");
+    printf("2. Download the source code file (employee_management.c).\n");
+    printf("3. Compile the source code using a C compiler:\n");
+    printf("   gcc employee_management.c -o employee_management\n");
+    printf("4. Run the executable:\n");
+    printf("   ./employee_management\n");
+
+    printf("\nProgram Overview\n");
+    printf("When you run the program, you will see the main menu with various options to manage employee records.\n");
+    printf("You can navigate through these options to perform different operations on the employee data.\n");
+
+    printf("\nMain Menu Options\n");
+    printf("Add Employee\n");
+    printf("1. Select option 1 from the main menu to add a new employee.\n");
+    printf("2. Enter the employee’s name, ID, salary, department, email, phone, and address.\n");
+
+    printf("\nDisplay Employees\n");
+    printf("1. Select option 2 from the main menu to display all employee records.\n");
+    printf("2. The program will list all the employee records.\n");
+
+    printf("\nSearch Employee\n");
+    printf("1. Select option 3 from the main menu to search for an employee.\n");
+    printf("2. Choose the search criteria:\n");
+    printf("   1. Name\n");
+    printf("   2. Department\n");
+    printf("   3. Salary Range\n");
+    printf("3. Enter the search parameters based on your choice.\n");
+
+    printf("\nUpdate Employee Record\n");
+    printf("1. Select option 4 from the main menu to update an employee's record.\n");
+    printf("2. Enter the employee ID of the record you want to update.\n");
+    printf("3. Update the employee’s name, salary, department, email, phone, and address as prompted.\n");
+
+    printf("\nDelete Employee Record\n");
+    printf("1. Select option 5 from the main menu to delete an employee's record.\n");
+    printf("2. Enter the employee ID of the record you want to delete.\n");
+
+    printf("\nSave to File\n");
+    printf("1. Select option 6 from the main menu to save employee records to a file.\n");
+    printf("2. The program saves the records to a text file specified by the user.\n");
+
+    printf("\nLoad from File\n");
+    printf("1. Select option 7 from the main menu to load employee records from a file.\n");
+    printf("2. The program loads records from a chosen text file.\n");
+
+    printf("\nSort Employees by ID\n");
+    printf("1. Select option 8 from the main menu to sort employee records by their ID.\n");
+    printf("2. The program sorts the records and displays them.\n");
+
+    printf("\nCalculate Department-wise Salary\n");
+    printf("1. Select option 9 from the main menu to calculate total salaries by department.\n");
+    printf("2. The program displays the total salary for each department.\n");
+
+    printf("\nDisplay Top N Paid Employees\n");
+    printf("1. Select option 10 from the main menu to display the top N paid employees.\n");
+    printf("2. Enter the number of top paid employees to display.\n");
+
+    printf("\nExit\n");
+    printf("1. Select option 11 from the main menu to exit the program.\n");
+
+    printf("\nAdditional Features\n");
+    printf("Back Function: After each operation, the program prompts you to press Enter to return to the main menu.\n");
+    printf("Clear Input Buffer: Ensures no leftover characters interfere with the next input.\n");
+
+    printf("\nTroubleshooting\n");
+    printf("Invalid Input: If you enter an invalid input, the program will prompt you to enter a valid one.\n");
+    printf("Ensure you are entering the correct data type as requested.\n");
+    printf("File Errors: If the program cannot open a file, ensure the file exists and you have the correct permissions to access it.\n");
+    printf("Memory Allocation Errors: If the program runs out of memory, try freeing up system memory and running the program again.\n");
 }
